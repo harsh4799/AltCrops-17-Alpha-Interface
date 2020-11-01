@@ -13,8 +13,8 @@ predRouter.route("/")
     Soils.find(req.body.location)
     .then((soil)=>{
         if(soil != null){
-            //let month = new Date().getMonth();
-            let month = 3;
+            console.log(req.body);
+            let month = new Date().getMonth();
             let season = (month < 9 && month >=5)?"kharif":(month <= 4 && month >=2)?"summer":"rabi";
             let rainfall_season = (season == "kharif") ? soil[0].rainfall_kharif:(season=="summer")?soil[0].rainfall_summer : soil[0].rainfall_rabi;
             let body1 = {
@@ -31,16 +31,12 @@ predRouter.route("/")
                 k : soil[0].K,
                 area: req.body.area
             };
-            //console.log(body2);
             axios.post("https://predictoryield.herokuapp.com/predict_crop",body2)
             .then((response1) => {
-                //console.log(response1.data);
                 body1.crop = response1.data.crops;
                 console.log(body1);
                 axios.post("https://predictoryield.herokuapp.com/predict_yield",body1)
                 .then((response2) => {
-                    //console.log(response2.data);
-                    
                     let crop_list = body1.crop;
                     let confidence = response2.data['confidence'];
                     let yield_ = response2.data['yield'];
@@ -66,7 +62,7 @@ predRouter.route("/")
                 })
             })
             .catch((error1)=>{
-                //console.log(error1);
+                console.log(error1);
                 err = new Error("Error in first model");
                 err.status = 404;
                 return next(error1);

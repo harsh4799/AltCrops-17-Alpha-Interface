@@ -23,22 +23,22 @@ soilRouter.route("/")
     .catch((err) => next(err));
 })
 
-soilRouter.route("/putrainfalls/")
-.put((req,res,next)=>{
-    console.log(req.body);
-    Soils.updateMany({ state: req.body.state },
-        {
-            rainfall_kharif:req.body.rainfall_kharif,
-            rainfall_rabi: req.body.rainfall_rabi,
-            rainfall_summer:req.body.rainfall_summer,
-        })
-    .then((soil)=>{
-        res.statusCode = 200;
-        res.setHeader("Content-Type", "application/json");
-        res.json(soil);
-    },(err)=>next(err))
-    .catch((err) => next(err));
-})
+// soilRouter.route("/putrainfalls/")
+// .put((req,res,next)=>{
+//     console.log(req.body);
+//     Soils.updateMany({ state: req.body.state },
+//         {
+//             rainfall_kharif:req.body.rainfall_kharif,
+//             rainfall_rabi: req.body.rainfall_rabi,
+//             rainfall_summer:req.body.rainfall_summer,
+//         })
+//     .then((soil)=>{
+//         res.statusCode = 200;
+//         res.setHeader("Content-Type", "application/json");
+//         res.json(soil);
+//     },(err)=>next(err))
+//     .catch((err) => next(err));
+// })
 
 // soilRouter.route("/createSoil/")
 // .post((req,res,next)=>{
