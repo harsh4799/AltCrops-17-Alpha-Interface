@@ -38,22 +38,29 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Initiate = ({ className, userData, ...rest }) => {
+const Initiate = ({ className, userData, setPredictedData, ...rest }) => {
 const classes = useStyles();
 const [plot, setPlot] = React.useState('');
 const [budget, setBudget] = React.useState(0);
 const [user, setUser] = React.useState({});
 
-// let cropsGrowing = [];
+console.log(budget);
 
 const handlePredict = () => {
-  let body = {area: 10000, budget: budget, ...user.plots[plot]}
-  console.log(body);
-  Axios.post(`https://ieee-hackathon-api.herokuapp.com/predict`, body).then((data) => {
-    console.log(data.data);
-  });
+  let body = {...user.plots[plot], area: 1000}
+  let body1 = {
+    area: 100,
+    location : body.location
+  }
+  delete body1.location['_id'];
+  // console.log(body1)
+  Axios.post('https://ieee-hackathon-api.herokuapp.com/predict/', body1)
+        .then((data) => {
+            console.log(data.data);
+            setPredictedData(data.data);
+          })
+  
 }
-
 const handleBudgetChange = (event) => {
   setBudget(event.target.value);
 }
@@ -67,8 +74,8 @@ React.useEffect(() => {
 }, [userData]);
 
   return (
-
-    <div
+    <React.Fragment>
+<div
       className={clsx(classes.root, className)}
       {...rest}
     >
@@ -175,6 +182,9 @@ React.useEffect(() => {
         </Card>
       </Box>
     </div>
+
+    </React.Fragment>
+    
   );
 };
 

@@ -23,9 +23,10 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const TrafficByDevice = ({ className, ...rest }) => {
+const TrafficByDevice = ({ predictedData, className, ...rest }) => {
   const classes = useStyles();
-
+  // const cropname = predictedData !== undefined ? predictedData[0].crop_list : `Loading`;
+  // console.log(predictedData)
   return (
     <Card
       className={clsx(classes.root, className)}
@@ -133,11 +134,11 @@ const TrafficByDevice = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              Confidence (%) : 97.6%
+              Confidence (%) : {95.5}%
             </Typography>
             <Box mt={2}>
             <LinearProgress
-              value={95}
+              value={95.5}
               variant="determinate"
             />
             </Box>

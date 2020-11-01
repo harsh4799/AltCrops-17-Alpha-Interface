@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
 const Dashboard = () => {
   const classes = useStyles();
   const [userData, setUserData] = React.useState([]);
+  const [predictedData, setPredictedData] = React.useState([]);
+
+  // console.log(predictedData);
 
   useEffect(() => {
     Axios.post('https://ieee-hackathon-api.herokuapp.com/users/')
@@ -110,7 +113,7 @@ const Dashboard = () => {
             xl={12}
             xs={12}
           >
-            <Initiate userData={userData}/>
+            <Initiate userData={userData} setPredictedData={setPredictedData}/>
           </Grid>
           
           <Grid
@@ -120,7 +123,7 @@ const Dashboard = () => {
             xl={9}
             xs={12}
           >
-            <LatestOrders />
+            <LatestOrders predictedData={predictedData}/>
           </Grid>
           <Grid
             item
@@ -129,7 +132,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <CropDetails />
+            <CropDetails predictedData={predictedData[0]}/>
           </Grid>
         </Grid>
       </Container>
