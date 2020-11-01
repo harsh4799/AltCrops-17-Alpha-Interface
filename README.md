@@ -1,4 +1,4 @@
-## AltCrops-17
+# AltCrops-17
 Steps to Run Frontend:
 1. ```cd frontend```
 2. ```npm init```
@@ -6,7 +6,7 @@ Steps to Run Frontend:
 
 ## Steps to run Backend:
 1  ```cd backend```
-2. ```npm init ```
+2. ```npm init```
 3. ```npm run start ```
 
 ## Steps to start Middleware:
