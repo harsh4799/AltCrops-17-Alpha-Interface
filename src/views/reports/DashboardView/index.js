@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Container,
   Grid,
@@ -7,12 +7,15 @@ import {
 import Page from 'src/components/Page';
 import Budget from './Budget';
 import LatestOrders from './LatestOrders';
-import LatestProducts from './LatestProducts';
-import Sales from './Sales';
+// import LatestProducts from './LatestProducts';
+import CropMaturity from './CropMaturity';
 import TasksProgress from './TasksProgress';
-import TotalCustomers from './TotalCustomers';
+import ProfitMade from './ProfitMade';
 import TotalProfit from './TotalProfit';
 import TrafficByDevice from './TrafficByDevice';
+import CropDetails from './CropDetails';
+import Initiate from './Initiate';
+import Axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,9 +26,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
+
 const Dashboard = () => {
   const classes = useStyles();
+  const [userData, setUserData] = React.useState([]);
 
+  useEffect(() => {
+    Axios.post('https://ieee-hackathon-api.herokuapp.com/users/')
+         .then((data) => {
+            setUserData(data.data);
+         })
+  }, [])
   return (
     <Page
       className={classes.root}
@@ -52,7 +64,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <TotalCustomers />
+            <ProfitMade />
           </Grid>
           <Grid
             item
@@ -79,7 +91,7 @@ const Dashboard = () => {
             xl={9}
             xs={12}
           >
-            <Sales />
+            <CropMaturity userData={userData}/>
           </Grid>
           <Grid
             item
@@ -88,17 +100,19 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <TrafficByDevice />
+            <TrafficByDevice userData={userData}/>
           </Grid>
+
           <Grid
             item
-            lg={4}
-            md={6}
-            xl={3}
+            lg={12}
+            md={12}
+            xl={12}
             xs={12}
           >
-            <LatestProducts />
+            <Initiate userData={userData}/>
           </Grid>
+          
           <Grid
             item
             lg={8}
@@ -107,6 +121,15 @@ const Dashboard = () => {
             xs={12}
           >
             <LatestOrders />
+          </Grid>
+          <Grid
+            item
+            lg={4}
+            md={6}
+            xl={3}
+            xs={12}
+          >
+            <CropDetails />
           </Grid>
         </Grid>
       </Container>

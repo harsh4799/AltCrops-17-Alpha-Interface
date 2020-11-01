@@ -12,7 +12,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import PeopleIcon from '@material-ui/icons/PeopleOutlined';
+import { MonetizationOn } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const TotalCustomers = ({ className, ...rest }) => {
+const ProfitMade = ({ className, ...rest }) => {
   const classes = useStyles();
 
   return (
@@ -52,7 +52,7 @@ const TotalCustomers = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              TOTAL CUSTOMERS
+              LAST PROFIT MADE
             </Typography>
             <Typography
               color="textPrimary"
@@ -63,7 +63,7 @@ const TotalCustomers = ({ className, ...rest }) => {
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <PeopleIcon />
+              <MonetizationOn />
             </Avatar>
           </Grid>
         </Grid>
@@ -91,8 +91,8 @@ const TotalCustomers = ({ className, ...rest }) => {
   );
 };
 
-TotalCustomers.propTypes = {
+ProfitMade.propTypes = {
   className: PropTypes.string
 };
 
-export default TotalCustomers;
+export default ProfitMade;

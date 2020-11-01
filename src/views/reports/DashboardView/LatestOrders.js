@@ -28,60 +28,50 @@ const data = [
     ref: 'CDD1049',
     amount: 30.5,
     customer: {
-      name: 'Ekaterina Tankova'
+      name: 'Wheat'
     },
     createdAt: 1555016400000,
-    status: 'pending'
+    status: '97.6%'
   },
   {
     id: uuid(),
     ref: 'CDD1048',
     amount: 25.1,
     customer: {
-      name: 'Cao Yu'
+      name: 'Jowar'
     },
     createdAt: 1555016400000,
-    status: 'delivered'
+    status: '93.3%'
   },
   {
     id: uuid(),
     ref: 'CDD1047',
     amount: 10.99,
     customer: {
-      name: 'Alexa Richardson'
+      name: 'Bajra'
     },
     createdAt: 1554930000000,
-    status: 'refunded'
+    status: '88.1%'
   },
   {
     id: uuid(),
     ref: 'CDD1046',
     amount: 96.43,
     customer: {
-      name: 'Anje Keizer'
+      name: 'Niger Seed'
     },
     createdAt: 1554757200000,
-    status: 'pending'
+    status: '69.0%'
   },
   {
     id: uuid(),
     ref: 'CDD1045',
     amount: 32.54,
     customer: {
-      name: 'Clarke Gillebert'
+      name: 'Sunflower'
     },
     createdAt: 1554670800000,
-    status: 'delivered'
-  },
-  {
-    id: uuid(),
-    ref: 'CDD1044',
-    amount: 16.76,
-    customer: {
-      name: 'Adam Denisov'
-    },
-    createdAt: 1554670800000,
-    status: 'delivered'
+    status: '42.0%'
   }
 ];
 
@@ -101,7 +91,7 @@ const LatestOrders = ({ className, ...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <CardHeader title="Latest Orders" />
+      <CardHeader title="Crop Recommendations For : PLOT 1" />
       <Divider />
       <PerfectScrollbar>
         <Box minWidth={800}>
@@ -109,10 +99,10 @@ const LatestOrders = ({ className, ...rest }) => {
             <TableHead>
               <TableRow>
                 <TableCell>
-                  Order Ref
+                  Crop ID
                 </TableCell>
                 <TableCell>
-                  Customer
+                  Crop Name
                 </TableCell>
                 <TableCell sortDirection="desc">
                   <Tooltip
@@ -123,12 +113,15 @@ const LatestOrders = ({ className, ...rest }) => {
                       active
                       direction="desc"
                     >
-                      Date
+                      Harvest On
                     </TableSortLabel>
                   </Tooltip>
                 </TableCell>
                 <TableCell>
-                  Status
+                  Confidence %
+                </TableCell>
+                <TableCell>
+                  Expected Profits
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -153,6 +146,9 @@ const LatestOrders = ({ className, ...rest }) => {
                       label={order.status}
                       size="small"
                     />
+                  </TableCell>
+                  <TableCell>
+                    {`1000`}
                   </TableCell>
                 </TableRow>
               ))}

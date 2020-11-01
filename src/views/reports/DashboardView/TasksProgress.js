@@ -45,13 +45,21 @@ const TasksProgress = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              TASKS PROGRESS
+              READY TO HARVEST : PLOT 3
             </Typography>
             <Typography
               color="textPrimary"
               variant="h3"
             >
-              75.5%
+              95%
+             
+            </Typography>
+            <Typography
+              color="textSecondary"
+              gutterBottom
+              variant="h6"
+            >
+              Wheat
             </Typography>
           </Grid>
           <Grid item>
@@ -62,7 +70,7 @@ const TasksProgress = ({ className, ...rest }) => {
         </Grid>
         <Box mt={3}>
           <LinearProgress
-            value={75.5}
+            value={95}
             variant="determinate"
           />
         </Box>

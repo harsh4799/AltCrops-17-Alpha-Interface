@@ -13,9 +13,7 @@ import {
   makeStyles,
   useTheme
 } from '@material-ui/core';
-import LaptopMacIcon from '@material-ui/icons/LaptopMac';
-import PhoneIcon from '@material-ui/icons/Phone';
-import TabletIcon from '@material-ui/icons/Tablet';
+import { QueryBuilder, HourglassEmpty, CheckCircleOutline } from '@material-ui/icons';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -23,25 +21,33 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const TrafficByDevice = ({ className, ...rest }) => {
+const TrafficByDevice = ({ className, userData, ...rest }) => {
   const classes = useStyles();
   const theme = useTheme();
+
+  const [user, setUser] = React.useState({});
+  let e = 0, g = 0, h = 0;
+
+  user.plots !== undefined && user.plots.forEach((plot) => {
+    if (plot.crop === "-99") e++;
+    else g++;
+  })
 
   const data = {
     datasets: [
       {
-        data: [63, 15, 22],
+        data: [g-1, h+1, e],
         backgroundColor: [
           colors.indigo[500],
-          colors.red[600],
-          colors.orange[600]
+          colors.green[600],
+          colors.red[600]
         ],
         borderWidth: 8,
         borderColor: colors.common.white,
         hoverBorderColor: colors.common.white
       }
     ],
-    labels: ['Desktop', 'Tablet', 'Mobile']
+    labels: ['Planted', 'Ready', 'Empty']
   };
 
   const options = {
@@ -66,33 +72,41 @@ const TrafficByDevice = ({ className, ...rest }) => {
     }
   };
 
+
+
   const devices = [
     {
-      title: 'Desktop',
-      value: 63,
-      icon: LaptopMacIcon,
-      color: colors.indigo[500]
+      title: 'Planted',
+      value: data.datasets[0].data[0],
+      icon: QueryBuilder,
+      color: data.datasets[0].backgroundColor[0]
     },
     {
-      title: 'Tablet',
-      value: 15,
-      icon: TabletIcon,
-      color: colors.red[600]
+      title: 'Ready',
+      value: data.datasets[0].data[1],
+      icon: CheckCircleOutline,
+      color: data.datasets[0].backgroundColor[1]
     },
     {
-      title: 'Mobile',
-      value: 23,
-      icon: PhoneIcon,
-      color: colors.orange[600]
+      title: 'Empty',
+      value: data.datasets[0].data[2],
+      icon: HourglassEmpty,
+      color: data.datasets[0].backgroundColor[2]
     }
   ];
+
+  // console.log(user.plots);
+
+  React.useEffect(() => {
+    setUser(userData);
+  }, [userData]);
 
   return (
     <Card
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <CardHeader title="Traffic by Device" />
+      <CardHeader title="Plot Statistics Overview" />
       <Divider />
       <CardContent>
         <Box
@@ -119,6 +133,10 @@ const TrafficByDevice = ({ className, ...rest }) => {
               key={title}
               p={1}
               textAlign="center"
+              style={{
+                marginLeft: "1.5rem",
+                marginRight: "1.5rem"
+              }}
             >
               <Icon color="action" />
               <Typography
@@ -132,7 +150,9 @@ const TrafficByDevice = ({ className, ...rest }) => {
                 variant="h2"
               >
                 {value}
-                %
+                <p style = {{
+                  fontSize: "12px"
+                }}>Plots</p>
               </Typography>
             </Box>
           ))}

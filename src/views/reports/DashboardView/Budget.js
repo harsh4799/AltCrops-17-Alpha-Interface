@@ -58,7 +58,7 @@ const Budget = ({ className, ...rest }) => {
               color="textPrimary"
               variant="h3"
             >
-              $24,000
+              ₹24,000
             </Typography>
           </Grid>
           <Grid item>
@@ -83,7 +83,7 @@ const Budget = ({ className, ...rest }) => {
             color="textSecondary"
             variant="caption"
           >
-            Since last month
+            Since last plantation
           </Typography>
         </Box>
       </CardContent>

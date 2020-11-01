@@ -20,24 +20,23 @@ const useStyles = makeStyles(() => ({
   root: {}
 }));
 
-const Sales = ({ className, ...rest }) => {
+const CropMaturity = ({ className, userData, ...rest }) => {
   const classes = useStyles();
   const theme = useTheme();
+
+  const [user, setUser] = React.useState({});
+
+  console.log(user);
 
   const data = {
     datasets: [
       {
-        backgroundColor: colors.indigo[500],
-        data: [18, 5, 19, 27, 29, 19, 20],
-        label: 'This year'
-      },
-      {
-        backgroundColor: colors.grey[200],
-        data: [11, 20, 12, 29, 30, 25, 13],
-        label: 'Last year'
+        backgroundColor: colors.green[600],
+        data: [88, 91, 95, 13, 44, 32, 25, 11, 0, 0],
+        label: 'Crop Growth'
       }
     ],
-    labels: ['1 Aug', '2 Aug', '3 Aug', '4 Aug', '5 Aug', '6 Aug']
+    labels: ['Plot 1', 'Plot 2', 'Plot 3', 'Plot 4', 'Plot 5', 'Plot 6', 'Plot 7','Plot 8','Plot 9','Plot 10']
   };
 
   const options = {
@@ -52,8 +51,8 @@ const Sales = ({ className, ...rest }) => {
         {
           barThickness: 12,
           maxBarThickness: 10,
-          barPercentage: 0.5,
-          categoryPercentage: 0.5,
+          barPercentage: 1,
+          categoryPercentage: 1,
           ticks: {
             fontColor: theme.palette.text.secondary
           },
@@ -95,6 +94,11 @@ const Sales = ({ className, ...rest }) => {
     }
   };
 
+
+  React.useEffect(() => {
+    setUser(userData);
+  }, [userData]);
+
   return (
     <Card
       className={clsx(classes.root, className)}
@@ -107,10 +111,10 @@ const Sales = ({ className, ...rest }) => {
             size="small"
             variant="text"
           >
-            Last 7 days
+            ALL PLOTS
           </Button>
         )}
-        title="Latest Sales"
+        title="Crop Maturity Overview"
       />
       <Divider />
       <CardContent>
@@ -143,8 +147,8 @@ const Sales = ({ className, ...rest }) => {
   );
 };
 
-Sales.propTypes = {
+CropMaturity.propTypes = {
   className: PropTypes.string
 };
 
-export default Sales;
+export default CropMaturity;
