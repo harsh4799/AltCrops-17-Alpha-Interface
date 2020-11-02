@@ -36,6 +36,7 @@ rabi_le = pickle.load(open("encodings/encoding_rabi.pkl", "rb"))
 
 soil_state = pickle.load(open("soil_state.pkl", "rb"))
 
+
 def predict(X, crop, season):
     if season == "kharif":
         X = np.insert(X, 0, kharif_le[crop], axis=0).reshape(1, -1)
@@ -70,29 +71,33 @@ def predict_api():
                 output.append(0)
                 pass
         max_yield = max(output)
-        confidence = [(out/max_yield)*100 for out in output]
-        return {"yield": output,'confidence':confidence}
+        confidence = [(out / max_yield) * 100 for out in output]
+        return {"yield": output, "confidence": confidence}
     except:
         return {"message": "bad request! yield"}, 400
+
 
 @app.route("/predict_crop", methods=["POST"])
 def predict_crop():
     try:
         request_json = request.get_json()
-        vol = soil_state['vol']
-        n = request_json['n']
-        p = request_json['p']
-        k = request_json['k']
-        area = request_json['area']
+        vol = soil_state["vol"]
+        n = request_json["n"]
+        p = request_json["p"]
+        k = request_json["k"]
+        area = request_json["area"]
         i = 0
         short_listed_crops = []
-        for nseed,pseed,kseed in zip(soil_state['n_seed'],soil_state['p_seed'],soil_state['k_seed']):
-            if(n*vol[i]>nseed and p*vol[i]>pseed and k*vol[i]>kseed):
-                short_listed_crops.append(soil_state['crop_name'][i])
+        for nseed, pseed, kseed in zip(
+            soil_state["n_seed"], soil_state["p_seed"], soil_state["k_seed"]
+        ):
+            if n * vol[i] > nseed and p * vol[i] > pseed and k * vol[i] > kseed:
+                short_listed_crops.append(soil_state["crop_name"][i])
             i += 1
-        return {"crops":short_listed_crops}
+        return {"crops": short_listed_crops}
     except:
         return {"message": "bad request! Crop"}, 400
+
 
 if __name__ == "__main__":
     app.run(debug=True)
