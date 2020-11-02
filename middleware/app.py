@@ -8,12 +8,8 @@ import pickle
 
 app = Flask(__name__)
 
-app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "this_should_be_configured")
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "Secret")
 
-
-###
-# Routing for your application.
-###
 # cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 global yield_model_kharif, yield_model_summer, yield_model_rabi, kharif_le, summer_le, rabi_le
