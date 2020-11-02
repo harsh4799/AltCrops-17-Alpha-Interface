@@ -13,3 +13,4 @@ Steps to Run Frontend:
 1. ```cd middleware```
 2. ```python app.py```
 
+![Screenshot of Deployed Website](https://github.com/blackrosedragon2/AltCrops-17/blob/master/website_ss.PNG)
