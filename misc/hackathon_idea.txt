@@ -1,0 +1,36 @@
+AI based plant recommendation system:
+
+1> Decentralized Seed blockchain that will help us keep track of costs for each type of fertilizer/seed/etc in the locality of a farmer as well as add competition to the market that will discourage local monopolies.
+
+2> Recommendation System / Filter: 
+	=> Auto Detect: Location / Temperature / Season / Climate Change?
+
+	=> Input: Area, Crop Type, Soil Type, Water Availability, Type of Farming(Organic/Conventional), Labour, Budget
+
+	=> Optional Inputs: Irrigation Systems employed, Animals/Machinery, Current Annual Cost, Current Annual Profit, Insurance
+
+	=> Intermediate Inferences : List of Recommended Seeds based on Inputs
+
+	=> Filters/Stats for each plant : 
+		Urgency/Time Availability (No Urgency(Can cultivate for years)/Average Case(default)/ High Urgency(minimizes time)), 
+		Effort Required, 
+		Costs Incurred,
+		Location From Supplier,
+		Profit Expected,
+		Value Added
+
+3> We can also attempt to predict price drops in seed prices and give notifications to farmers at those times
+
+4> Comparison Page in the UI would make it useful
+
+*The UI for the farmer must be as simple as possible, either via a visual interface or simple selection using suggestions.*
+
+
+Pros: 
+	> The blockchain + ai will probably be the originality of this application, other applications will have to create an unrealistic dataset which may not update as much as the blockchain will. This will make our AI model superior to theirs as well.
+
+Cons:
+	> The other 2 points mentioned are pretty standard to crop recommendation systems, unfortunately that will be the core of our project . We must think of other ways to make this project unique some questions that might help us think: 
+		1) From the farmer's prospective what other things do they look for when they buy seeds and how can we help
+		2) What other data points can we add in our recommendation system that our competitors may not have thought about
+		3) What can the blockchain mechanism provide to the companies that they'd even think of using a blockchain?	
